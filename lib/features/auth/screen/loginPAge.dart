@@ -36,12 +36,15 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 210),
+                      padding: EdgeInsets.only(right: 210,),
                       child: Text('Sign In', style: TextStyle(color: Colors.blue, fontSize: 20)),
                     ),
-                    Text(
-                      'Welcome back! Please enter your credentials to login',
-                      style: TextStyle(color: Colors.black26, fontSize: 10),
+                    Padding(
+                      padding:  EdgeInsets.only(right: 30,top: 5),
+                      child: Text(
+                        'Welcome back! Please enter your credentials to login',
+                        style: TextStyle(color: Colors.black, fontSize: 10),
+                      ),
                     ),
                     SizedBox(height: 10),
                     // Decrease the height of the TextField
@@ -70,6 +73,13 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       height: 50,
                       child: TextFormField(controller: password,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a password';
+                          }
+                          // Add more password validation if needed
+                          return null;
+                        },
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
@@ -80,11 +90,20 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     SizedBox(height: 15,),
-                    Text('Forgot your Password'),SizedBox(height: 15,),
+                    Padding(
+                      padding:  EdgeInsets.only(left: 170),
+                      child: Text('Forgot your Password ?',style: TextStyle(fontSize: 9),),
+                    ),
+                    SizedBox(height: 15,),
                     // Increase the width of the ElevatedButton
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () {if(_formKey.currentState!.validate()){
                         login(username.text, password.text);
+                        showSnackBar(context, 'login successfully');
+                      }else{
+                        showSnackBar(context, 'error to login');
+                      }
+
                        },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.black, // Background color

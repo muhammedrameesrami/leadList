@@ -11,13 +11,13 @@ class MyList extends StatefulWidget {
 }
 
 class _MyListState extends State<MyList> {
-
   @override
   void initState() {
     ListRepository().getAllLeads();
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,14 @@ class _MyListState extends State<MyList> {
           Padding(
             padding: const EdgeInsets.all(9.0),
             child: Container(
-              color: Colors.white38,
+              decoration: BoxDecoration(color: Colors.white,
+                  boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 2,
+                    offset: Offset(0, 2)),
+              ]),
               height: 50,
               width: double.infinity,
               child: Center(
@@ -38,12 +45,16 @@ class _MyListState extends State<MyList> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.list, color: Colors.black),
+                        Icon(Icons.list, size: 25, color: Colors.black),
                         SizedBox(width: 10),
-                        Text('Lead List', style: TextStyle(color: Colors.black)),
+                        Text('Lead List',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black)),
                       ],
                     ),
-                    Icon(CupertinoIcons.bell, color: Colors.black),
+                    Icon(CupertinoIcons.bell_fill, color: Colors.black),
                   ],
                 ),
               ),
@@ -56,7 +67,12 @@ class _MyListState extends State<MyList> {
                 // Build your list items here
                 return Padding(
                   padding: EdgeInsets.only(left: 15, right: 15, top: 10),
-                  child: Container(
+                  child: Container(decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(color: Colors.white24.withOpacity(0.2),spreadRadius: 1,
+                        blurRadius: 2,
+                        offset: Offset(0, 2)
+                    )
+                  ]),
                     height: 80,
                     child: Row(
                       children: [
@@ -64,7 +80,7 @@ class _MyListState extends State<MyList> {
                           height: 60,
                           width: 35,
                           decoration: BoxDecoration(
-                              color: Colors.blueGrey,
+                              color: Colors.blue[200],
                               borderRadius: BorderRadius.circular(5)),
                           child: Center(
                             child: Text(
@@ -125,17 +141,17 @@ class _MyListState extends State<MyList> {
                           height: 25,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue),
+                              color: Colors.blue[100]),
                           child: Center(child: Text('flutter')),
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 28,
                         ),
                         Container(
                           child: Column(
                             children: [
                               Padding(
-                                padding:  EdgeInsets.only(top: 13),
+                                padding: EdgeInsets.only(top: 13),
                                 child: Row(
                                   children: [
                                     Icon(
@@ -149,10 +165,13 @@ class _MyListState extends State<MyList> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Icon(
-                                CupertinoIcons.phone,
-                                size: 30,color: Colors.black,
+                                Icons.phone_in_talk_outlined,
+                                size: 30,
+                                color: Colors.black,
                               )
                             ],
                           ),
